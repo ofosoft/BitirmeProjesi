@@ -1,0 +1,44 @@
+<ion-header class="listing-header">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <h4>Sivas Rehberim Mobil App</h4>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="listing-content">
+  <ion-slides>
+    <ion-slide class="slide-1"  *ngFor="let haber of listing.haberler">
+      <img src="{{'http://www.sivasrehberim.net/public/admin/uploads/haberler/'+haber.haberResim}}">
+      <p class="intro-text" style="margin:0">
+        {{haber.haberBaslik}}
+      </p>
+    </ion-slide>
+    
+  </ion-slides>
+  <h4 class="categories-title">{{'POPULAR' | translate}}</h4>
+  <ion-scroll scrollX="true" class="horizontal-categories">
+    <ion-row class="categories-row">
+      <ion-col width-30 class="horizontal-item"  *ngFor="let populer of listing.populerFirmalar">
+        <preload-image [ratio]="{w:1, h:1}" src="{{'http://www.sivasrehberim.net/public/admin/uploads/firmalar/'+populer.firmaId+'/'+populer.firmaLogo}}" title="" (click)="firmayaGit(populer)"></preload-image>
+      </ion-col>
+    </ion-row>
+  </ion-scroll>
+  <h4 class="categories-title">{{'BROWSE_CATEGORIES' | translate}}</h4>
+  <ion-row class="grid-categories">
+    <ion-col width-50 class="category-item" *ngFor="let sektor of listing.sektorler">
+    <background-image tappable class="category-heading" src="http://sivasrehberim.net/public/img/bos.png" (click)="altSektorGit(sektor)">
+        <ion-row class="heading-row">
+          <ion-col no-padding width-100>
+            <h2 class="category-title">{{sektor.sektorAd}}</h2>
+          </ion-col>
+        </ion-row>
+      </background-image>
+    </ion-col>
+  </ion-row>
+</ion-content>
+
+<!--[src]="popular.firmaLogo"--> 

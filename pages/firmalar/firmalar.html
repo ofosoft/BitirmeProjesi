@@ -1,0 +1,26 @@
+<ion-header class="listing-header">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <h4>Firmalar</h4>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="listing-content">
+  
+  <h4 class="categories-title">{{'BROWSE_CATEGORIES' | translate}}</h4>
+  <ion-row class="grid-categories">
+    <ion-col width-50 class="category-item" *ngFor="let firma of firmalar" (click)="firmaGit(firma)">
+      <background-image tappable class="category-heading"  src="{{'http://www.sivasrehberim.net/public/admin/uploads/firmalar/'+firma.firmaId+'/'+firma.firmaLogo}}">
+        <ion-row class="heading-row">
+          <ion-col no-padding width-100>
+            <h2 class="category-title">{{firma.firmaAd}}</h2>
+          </ion-col>
+        </ion-row>
+      </background-image>
+    </ion-col>
+  </ion-row>
+</ion-content>

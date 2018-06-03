@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ firma?.firmaAd }}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="contact-card-content">
+  <ion-slides class="contact-slides" pager="true" loop="false">
+    <ion-slide class="contact-slide"  *ngFor="let resim of firma?.resimler" >
+      <img class="slide-image" src="http://www.sivasrehberim.net/{{resim}}">
+    </ion-slide>
+  </ion-slides>
+
+  <ion-row class="contact-details-row" wrap>
+    <ion-col no-padding width-65>
+      <h2 class="contact-name">{{ firma?.firmaAd }}</h2>
+    </ion-col>
+   <!-- <ion-col no-padding width-35 class="rating-col">
+      <div class="contact-rating">
+        <ion-item class="rating-item">
+          <rating [(ngModel)]="contact.rating" max="5" read-only="true"></rating>
+        </ion-item>
+      </div>
+    </ion-col>-->
+    <ion-col no-padding width-100>
+      <p class="contact-description" *ngIf="firma?.firmaCalismaSaatleri != ' ' ">
+        Çalışma Saatleri : {{firma?.firmaCalismaSaatleri}}
+        
+      </p>
+    </ion-col>
+  </ion-row>
+
+  <div class="button-bar">  
+
+    <button ion-button primary>
+       <a href="{{'tel:'+firma?.firmaMobil}}" style="color:#ae75e7"><ion-icon name="call"></ion-icon></a>
+    </button>
+    
+    <button ion-button primary (click)="sendMail(firma?.firmaMail)">
+      <ion-icon name="mail"></ion-icon>
+    </button>
+    <button ion-button primary (click)="openInAppBrowser(firma?.firmaWeb)">
+      <ion-icon name="globe"></ion-icon>
+    </button>
+  </div>
+  <iframe
+  width="100%"
+  height="450"
+  frameborder="0" style="border:0"
+  [src]="transform(firma?.firmaKonum)" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+</iframe>
+
+  <ion-list class="details-list">
+    <ion-item class="detail-item">
+      <ion-avatar item-left *ngIf="firma?.firmaAdres != ' ' ">
+        <ion-icon name="pin"></ion-icon>
+      </ion-avatar>
+      <span class="detail-text">{{ firma?.firmaAdres }}</span>
+    </ion-item>
+    <ion-item class="detail-item" *ngIf="firma?.firmaWeb">
+      <ion-avatar item-left>
+        <ion-icon name="globe"></ion-icon>
+      </ion-avatar>
+      <span class="detail-text">{{ firma?.firmaWeb }}</span>
+    </ion-item>
+    <ion-item class="detail-item" *ngIf="firma?.firmaMobil != ' ' ">
+      <ion-avatar item-left>
+        <ion-icon name="call"></ion-icon>
+      </ion-avatar>
+      <span class="detail-text"><a href="{{'tel:'+firma?.firmaMobil}}" style="color:#c5c5c5;text-decoration: none">{{ firma?.firmaMobil }}</a></span>
+    </ion-item>
+    <ion-item class="detail-item" *ngIf="firma?.firmaMail != ' ' ">
+      <ion-avatar item-left>
+        <ion-icon name="mail"></ion-icon>
+      </ion-avatar>
+      <span class="detail-text"><a href="{{'mail:'+firma?.firmaMail}}" style="color:#c5c5c5;text-decoration: none">{{ firma?.firmaMail }}</a></span>
+    </ion-item>
+  </ion-list>
+</ion-content>
